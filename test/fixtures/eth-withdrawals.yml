@@ -1,0 +1,10 @@
+- recipient: '0x7E252a0F3FA6209467033CB245608Ff635474D39'
+  amount: .01
+- recipient: '0xC2eD0b502fBCb9C8c60ae250b395a1B179Adfe7F'
+  amount: .02
+- recipient: '0x86EE8A83d8E7d044DBC67aC96d857dbE1427Dd11'
+  amount: .03
+- recipient: '0xBe5B64B70a5FA5Aa474320e135025b82ab782051'
+  amount: .04
+- recipient: '0xf2bE9f88AEaf89E08cB56299d2cC24dF3457F5F0'
+  amount: .05

@@ -1,0 +1,11 @@
+{
+  "globalSetup": "./global-setup.js",
+  "globalTeardown": "./global-teardown.js",
+  "moduleFileExtensions": ["json", "js", "ts"],
+  "rootDir": ".",
+  "testRegex": ".e2e-spec.ts$",
+  "testResultsProcessor": "jest-sonar-reporter",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  }
+}

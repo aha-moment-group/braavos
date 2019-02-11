@@ -1,0 +1,29 @@
+version: '3'
+services:
+  postgresql:
+    image: postgres:11-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: braavos
+      POSTGRES_PASSWORD: postgres_password
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+  bitcoind:
+    image: ruimarinho/bitcoin-core:0.17-alpine
+    tty: true
+    ports:
+      - 18443:18443
+    volumes:
+      - ./fixtures/bitcoind-entrypoint.sh:/entrypoint.sh
+    entrypoint: /entrypoint.sh
+  ganache:
+    image: trufflesuite/ganache-cli:v6.1.8
+    ports:
+      - 8545:8545
+    command:
+      -a 20
+      --mnemonic '啊 哈 哈'

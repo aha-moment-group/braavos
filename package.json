@@ -1,0 +1,80 @@
+{
+  "name": "braavos",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "sed -i.bak 's/var scryptNative = require(\".\\/build\\/Release\\/scrypt\")/var scryptNative = require(\"scrypt\")/' ./node_modules/scrypt/index.js",
+    "lint": "tslint --project ./tsconfig.json --fix './{src,test}/**/*.ts' && prettier --write \"**/*.ts\"",
+    "start:http": "nodemon -e ts -w ./src -i src/**/*.spec.ts -x ts-node --files src/http.main.ts",
+    "start:crons": "forever -c \"nodemon -e ts -w ./src -i src/**/*.spec.ts --exitcrash -x ts-node --files\" src/crons.main.ts",
+    "start:dashboard": "nodemon -e ts -w ./src -i src/**/*.spec.ts -x ts-node --files src/dashboard.main.ts",
+    "test:cov": "jest --coverage",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "dependencies": {
+    "@google-cloud/logging-bunyan": "^0.9.0",
+    "@nestjs/common": "^5.0.0",
+    "@nestjs/core": "^5.0.0",
+    "@nestjs/passport": "^5.0.0",
+    "@nestjs/swagger": "^2.0.0",
+    "@nestjs/typeorm": "^5.0.0",
+    "@types/amqplib": "^0.5.0",
+    "@types/bip32": "^1.0.0",
+    "@types/bip39": "^2.0.0",
+    "@types/bitcoinjs-lib": "^4.0.0",
+    "@types/bunyan": "^1.0.0",
+    "@types/dotenv": "^4.0.0",
+    "@types/web3": "^1.0.0",
+    "amqplib": "^0.5.2",
+    "bip32": "^1.0.0",
+    "bip39": "^2.0.0",
+    "bitcoin-core": "^2.0.0",
+    "bitcoinjs-lib": "^4.0.0",
+    "bunyan": "^1.8.1",
+    "class-transformer": "^0.1.0",
+    "class-validator": "^0.9.0",
+    "dotenv": "^6.0.0",
+    "ethereumjs-wallet": "^0.6.0",
+    "forever": "^0.15.3",
+    "nest-schedule": "^0.4.0",
+    "nestjs-amqp": "^0.1.0",
+    "passport": "^0.4.0",
+    "passport-http-signature": "^1.0.0",
+    "pg": "^7.0.0",
+    "reflect-metadata": "^0.1.12",
+    "rxjs": "^6.2.1",
+    "superagent": "^4.0.0-beta.5",
+    "typeorm": "^0.2.0",
+    "typescript": "^3.0.0",
+    "web3": "^1.0.0-beta.36"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^5.0.0",
+    "@types/js-yaml": "^3.0.0",
+    "@types/supertest": "^2.0.0",
+    "jest": "^23.0.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "nodemon": "^1.18.7",
+    "prettier": "^1.0.0",
+    "superagent-http-signature": "^0.2.0",
+    "supertest": "^3.0.0",
+    "ts-jest": "^23.0.0",
+    "ts-node": "^7.0.0",
+    "tslint": "^5.0.0",
+    "tslint-sonarts": "^1.0.0"
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "moduleFileExtensions": [
+      "json",
+      "js",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "testResultsProcessor": "jest-sonar-reporter",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    }
+  }
+}
